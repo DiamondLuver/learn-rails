@@ -24,11 +24,10 @@ class CartsController < ApplicationController
             redirect_to products_path, alert: 'Insufficient quantity in stock.'
             return
         end
-
         if @cart.add_product(product, params[:quantity].to_i)
             redirect_to root_url, notice: 'Product added to cart successfully.'
         else
-            redirect_to root_url, alert: 'Unable to add product to cart.'
+            redirect_to root_url, alert: 'Total quantity exceed stock in cart.'
         end
         
     end
