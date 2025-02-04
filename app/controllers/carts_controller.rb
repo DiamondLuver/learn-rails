@@ -3,7 +3,7 @@ class CartsController < ApplicationController
 
     def show
         @cart = current_user.cart
-        @shopping_carts = @cart.shopping_carts
+        @shopping_carts = @cart.get_shopping_carts
         @cart_products = @cart.products
         @quantities = @shopping_carts.group(:product_id).sum(:quantity)
         @total_price = @cart_products.sum { |product| @quantities[product.id] * product.price }
@@ -39,10 +39,10 @@ class CartsController < ApplicationController
             redirect_to cart_path, notice: 'Product removed from cart successfully.'
         end
     end
-    private 
-
-
-
-
-
+    def checkout
+        @cart = current_user.cart
+        if @cart.checkout_order
+            redirect_to payment_checkout_path, notice: 'Order placed successfully.'
+        end
+    end
 end
