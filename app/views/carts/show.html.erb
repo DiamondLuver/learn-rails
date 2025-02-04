@@ -3,19 +3,23 @@
     <% @cart_products.each do |product| %>
         <div class="flex flex-col text-center justify-between shadow p-4 border rounded">
             <p class="font-semibold"><%= product.name %></p>
-            <p><%= product.description %></p>
-            <p>$ <%= product.price %></p>
-            <p>Quantity: <%= product.quantity %></p>
-        </div>                               
-    
-        <div class="flex flex-col text-center justify-between shadow p-4 border rounded">
-            <p class="font-semibold">Total:</p>            
-        </div>
+            <p>Description: <%= product.description %></p>
+            <p>In Stock: <%= product.quantity %></p>
+            <p>Unit Price: $ <%= product.price %></p>
+            <p class="font-semibold">Quantity: <%= @quantities[product.id] %></p> 
+            <p class="font-semibold">Total: $<%= @quantities[product.id]* product.price %></p>
             
-        <%= form_with(url: remove_from_cart_path(product.id), method: :delete, local: true, html: {
+            <%= form_with(url: remove_from_cart_path(product.id), method: :delete, local: true, html: {
                 class: "w-1/3 submit-form  text-red-500 "
-        }) do |form| %>
-            <%= form.submit "Remove from Cart", class: "underline" %>
-        <% end %>
+            }) do |form| %>
+                <%= form.submit "Remove from Cart", class: "underline" %>
+            <% end %>
+        </div>  
+        
     <% end %>
+    </div>
+
+    <div class="flex flex-col text-center justify-between shadow p-4 border rounded">
+        <p class="font-semibold">Cart Total: $ <%= @total_price %></p>
+    </div>
 <% end %>
