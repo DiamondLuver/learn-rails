@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "pages/home"
   devise_for :users
   resources :users, only: [:index, :show, :edit, :update, :destroy] 
+  get "profile" => "users#profile_show", as: :profile_show
   delete "users/:id" => "users#destroy", as: :destroy_user
   # resources :payments
   get '/create-checkout-session' => "payments#create_checkout_session"
