@@ -29,7 +29,7 @@
     </h1>
     <% if user_signed_in? %>
     <div class="nav-link flex items-center justify-center gap-2">
-          <%= link_to 'Profile', user_path(current_user.id),  html: { class: "underline text-cyan-500 center p-2" } %>
+          <%= link_to 'Profile', profile_show_path,  html: { class: "underline text-cyan-500 center p-2" } %>
           |<% if current_user.has_role?(:admin) %>
             <%= link_to 'Manage Users', users_index_path %>
             | <%= link_to 'Manage Vendors', vendors_path %>
