@@ -1,0 +1,8 @@
+
+<% if @vendor %>
+  <h1><%= @vendor.name %></h1>
+  <p><%= @vendor.description %></p>
+  <p><%= link_to @vendor.user.email, user_path(@vendor.user.id) %></p>
+  <p><%= link_to "Edit", edit_vendor_path(@vendor) %></p>
+  <p><%= link_to "Back to vendors", vendors_path %></p>
+<% end %>

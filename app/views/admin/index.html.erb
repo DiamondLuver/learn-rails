@@ -1,0 +1,33 @@
+
+
+<% if @products %>
+    <table class="w-full border-collapse border border-gray-400" >
+        <thead>
+            <tr>
+                <th class="border border-gray-300">Name</th>
+                <th class="border border-gray-300">Description</th>
+                <th class="border border-gray-300">Price</th>
+                <th class="border border-gray-300">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @products.each do |product| %>
+                <tr class="text-center border border-gray-300">
+                    <td><%= product.name %></td>
+                    <td><%= product.description %></td>
+                    <td>$ <%= product.price %></td>
+                    <td class="flex justify-evenly gap-2">
+                    <%= link_to "Edit", edit_product_path(product), class: "w-1/3 underline text-orange-500" %>
+                    <%= link_to "View", product_path(product), class: "w-1/3 underline text-cyan-500" %>
+                    <%= form_with(url: destroy_product_path(product), method: :delete, local: true, html: {
+                         class: "w-1/3 submit-form  text-red-500 "
+                    }) do |form| %>
+                        <%= form.submit "Delete", data: { confirm: "Are you sure?" }, class: "underline" %>
+                    <% end %>
+                    </td>
+                </tr>                               
+            <% end %>
+        </tbody>
+    </table>
+<% end %>
+

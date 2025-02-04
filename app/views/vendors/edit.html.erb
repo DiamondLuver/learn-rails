@@ -1,0 +1,37 @@
+<% content_for :title, "New vendor" %>
+
+<h1>Edit vendor</h1>
+
+
+<% if @vendor.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@vendor.errors.count, "error") %> prohibited this vendor from being saved:</h2>
+    <ul>
+      <% @vendor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<br>
+
+<%= form_with(model: @vendor, local: true) do |form| %>
+  <div style="margin-bottom: 15px;">
+    <%= form.label :name, "vendor Name", style: "font-weight: bold; color: #555;" %><br>
+    <%= form.text_field :name, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;" %>
+  </div>
+  <div style="margin-bottom: 15px;">
+    <%= form.label :description, "Description", style: "font-weight: bold; color: #555;" %><br>
+    <%= form.text_field :description, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;" %>
+  </div>
+
+  <div style="text-align: center;">
+    <%= form.submit "Update vendor" %>
+    <%= link_to "Cancel", vendors_path, style: "margin-left: 10px; color: #777; text-decoration: none; font-size: 14px;" %>
+  </div>
+
+  <div>
+    <%= link_to "Back to vendors", vendors_path %>
+  </div>
+<% end %>

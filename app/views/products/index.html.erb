@@ -1,0 +1,21 @@
+<%= link_to "cart", cart_path %>
+<% if @products %>
+    <div class="grid grid-cols-3 gap-4">
+    <% @products.each do |product| %>
+        <div class="flex flex-col text-center justify-between shadow p-4 border rounded">
+            <p class="font-semibold "><%= product.name %></p>
+            <p><%= product.description %></p>
+            <p>$ <%= product.price %></p>
+            <%= form_with url: add_to_cart_path(product.id), method: :post, local: true do %>
+                <%= number_field_tag :quantity, 1, min: 1, class: "border p-1 rounded" %>
+                <%= submit_tag "Add to cart", class: "bg-blue-500 text-white p-2 rounded" %>
+            <% end %>
+            <p>Quantity: <%= product.quantity %></p>
+            
+            
+        </div>                               
+    <% end %>   
+    </div>
+<% end %>
+
+

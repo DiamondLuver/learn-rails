@@ -1,0 +1,21 @@
+<% if @cart %>
+    <div class="grid grid-cols-3 gap-4">
+    <% @cart_products.each do |product| %>
+        <div class="flex flex-col text-center justify-between shadow p-4 border rounded">
+            <p class="font-semibold"><%= product.name %></p>
+            <p><%= product.description %></p>
+            <p>$ <%= product.price %></p>
+            <p>Quantity: <%= product.quantity %></p>
+        </div>                               
+    
+        <div class="flex flex-col text-center justify-between shadow p-4 border rounded">
+            <p class="font-semibold">Total:</p>            
+        </div>
+            
+        <%= form_with(url: remove_from_cart_path(product.id), method: :delete, local: true, html: {
+                class: "w-1/3 submit-form  text-red-500 "
+        }) do |form| %>
+            <%= form.submit "Remove from Cart", class: "underline" %>
+        <% end %>
+    <% end %>
+<% end %>

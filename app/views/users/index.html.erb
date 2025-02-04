@@ -1,0 +1,34 @@
+<% if @users %>
+<table class="w-full border-collapse border border-gray-400" >
+    <thead>
+        <tr>
+            <th>First name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @users.each do |user| %>
+            <tr style="border-bottom: 1px solid #ddd;">
+
+                <td><%= user.firstname %></td>
+                <td><%= user.lastname %></td>
+                <td><%= user.email %></td>
+               
+                <td class="flex justify-evenly gap-2">
+                <%= link_to "Edit", edit_user_path(user), class: "w-1/3 underline text-orange-500" %>
+                <br><%= link_to "View", user_path(user) , class: "w-1/3 underline text-cyan-500" %>
+                <%= form_with(url: destroy_user_path(user), method: :delete, local: true, html: {
+                         class: "w-1/3 submit-form  text-red-500 "
+                    }) do |form| %>
+                    <%= form.submit "Delete", data: { confirm: "Are you sure?" } %>
+                  <% end %>
+                  </td>
+                
+            </tr>                               
+        <% end %>
+    </tbody>
+    </table>
+
+    <% end %>

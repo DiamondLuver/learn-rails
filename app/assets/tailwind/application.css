@@ -1,0 +1,26 @@
+@import "tailwindcss";
+form {
+    @apply md:w-1/2 mx-auto;
+}
+.title{
+    @apply text-3xl mt-2 font-bold text-center;
+}
+.field input{
+    @apply w-full p-2 my-2 border border-gray-300 rounded-md;
+}
+.actions input[type="submit"]{
+    @apply w-full p-2 my-2 text-white bg-blue-500 rounded-md;
+}
+.nav-link a, .link a {
+    @apply text-cyan-500;
+}
+.nav-link a, .link a:hover {
+    @apply text-cyan-700;
+}
+.submit-form {
+    @apply w-auto;
+}
+thead tr th{
+    @apply bg-cyan-200;
+}
+

@@ -1,0 +1,42 @@
+<% content_for :title, "New product" %>
+
+<h1>Edit product</h1>
+
+
+<% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+    <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<br>
+
+<%= form_with(model: @product, local: true) do |form| %>
+  <div style="margin-bottom: 15px;">
+    <%= form.label :name, "Product Name", style: "font-weight: bold; color: #555;" %><br>
+    <%= form.text_field :name, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;" %>
+  </div>
+  <div style="margin-bottom: 15px;">
+    <%= form.label :description, "Description", style: "font-weight: bold; color: #555;" %><br>
+    <%= form.text_field :description, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;" %>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <%= form.label :price, "Price", style: "font-weight: bold; color: #555;" %><br>
+    <%= form.number_field :price, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;" %>
+  </div>
+
+  <div style="text-align: center;">
+    <%= form.submit "Update Product" %>
+    <%= link_to "Cancel", products_path, style: "margin-left: 10px; color: #777; text-decoration: none; font-size: 14px;" %>
+  </div>
+
+  <div>
+    <%= link_to "Back to products", products_path %>
+  </div>
+<% end %>
