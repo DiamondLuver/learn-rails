@@ -51,6 +51,10 @@
   <% if flash[:notice] %>
     <p style="color: green;"><%= flash[:notice] %></p>
   <% end %>
+  <% if flash[:alert] %>
+    <p style="color: red;"><%= flash[:alert] %></p>
+  <% end %>
+  
     <%= yield %>
   </body>
 </html>
