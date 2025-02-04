@@ -1,4 +1,6 @@
+<h1 class="title">User Profile</h1>
 <% if @user %>
-<p><%= @user.email %></p>
-<p><%= @user.firstname %> <%= @user.lastname %></p>
+    <p><%= @user.email %></p>
+    <p><%= @user.firstname %> <%= @user.lastname %></p>
+    # <%= link_to "Update", edit_user_path(@user) %></p>
 <% end %>
