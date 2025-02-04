@@ -3,9 +3,12 @@ class CartsController < ApplicationController
 
     def show
         @cart = current_user.cart
-        # @products = @cart.shopping_carts
+        @shopping_carts = @cart.shopping_carts
         @cart_products = @cart.products
+        @quantities = @shopping_carts.group(:product_id).sum(:quantity)
+        @total_price = @cart_products.sum { |product| @quantities[product.id] * product.price }
     end
+
     def create
         if current_user.cart.nil?
             @cart = Cart.new
@@ -14,19 +17,20 @@ class CartsController < ApplicationController
         else
             @cart = current_user.cart
         end
+        @shopping_carts = @cart.shopping_carts
+        
         product = Product.find(params[:product_id])
         if product.quantity < params[:quantity].to_i
             redirect_to products_path, alert: 'Insufficient quantity in stock.'
             return
         end
-        
-        @cart.add_product(product)
 
-        if @cart.save
+        if @cart.add_product(product, params[:quantity].to_i)
             redirect_to root_url, notice: 'Product added to cart successfully.'
         else
-            redirect_to products_path, alert: 'Unable to add product to cart.'
+            redirect_to root_url, alert: 'Unable to add product to cart.'
         end
+        
     end
     def remove_from_cart
         product = Product.find(params[:product_id])
