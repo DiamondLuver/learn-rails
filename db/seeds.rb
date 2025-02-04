@@ -17,5 +17,5 @@ vendor = Vendor.find(1)
 
 products = Product.all
 products.each do |product|
-    product.update_attribute(:quantity, 1)
+    product.update_attribute(:quantity, 10)
 end
