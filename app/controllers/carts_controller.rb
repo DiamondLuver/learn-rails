@@ -6,7 +6,11 @@ class CartsController < ApplicationController
         @shopping_carts = @cart.get_shopping_carts
         @cart_products = @cart.products
         @quantities = @shopping_carts.group(:product_id).sum(:quantity)
-        @total_price = @cart_products.sum { |product| @quantities[product.id] * product.price }
+        if @cart_products.empty?
+            @total_price = 0
+        else
+            @total_price = @cart_products.sum { |product| @quantities[product.id] * product.price }
+        end
     end
 
     def create
