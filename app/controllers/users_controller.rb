@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!, :check_admin
+    before_action :authenticate_user!
+    before_action :check_admin, except: [:profile_show]
     before_action :set_user, only: [:show, :update, :destroy]
 
     def index
@@ -7,6 +8,10 @@ class UsersController < ApplicationController
     end
 
     def show
+    end
+    def profile_show
+        @user = current_user
+        render "users/show"
     end
 
     def new
