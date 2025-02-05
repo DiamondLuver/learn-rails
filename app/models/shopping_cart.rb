@@ -8,4 +8,7 @@ class ShoppingCart < ApplicationRecord
   def total_quantity
     cart.shopping_carts.sum(:quantity)
   end
+  def get_products
+    cart.shopping_carts.includes(:product).where(is_completed: false).map(&:product)
+  end
 end
