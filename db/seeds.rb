@@ -13,13 +13,14 @@ user.add_role :admin
 # user = User.find(1)
 # Vendor.find_or_create_by!(name: 'Vendor 1', user: user, description: 'Vendor 1 description', status: 1)
 vendor = Vendor.find(1)
-# Product.find_or_create_by!(name: 'Product 1',vendor: vendor, description: 'Product 1 description', price: 100)
+Product.find_or_create_by!(name: 'Product 1',vendor: vendor, description: 'Product 1 description',quantity: 10, price: 100)
+Product.find_or_create_by!(name: 'Product 2',vendor: vendor, description: 'Product 2 description',quantity: 10, price: 100)
 
 # products = Product.all
 # products.each do |product|
 #     product.update_attribute(:quantity, 10)
 # end
 
-
+# Cart.destroy_all
 # cart = Cart.find_by_id(1)
 # cart.update_attribute(:status, 3)
