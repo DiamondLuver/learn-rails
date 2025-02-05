@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   has_many :shopping_carts
   has_many :carts, through: :shopping_carts
   belongs_to :vendor
-  after_create :check_quantity
+  before_update :check_quantity
 
   def check_quantity
     if self.quantity <= 0
