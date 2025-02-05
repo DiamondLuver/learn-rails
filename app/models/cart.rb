@@ -3,12 +3,11 @@ class Cart < ApplicationRecord
   has_many :shopping_carts
   has_many :products, through: :shopping_carts
 
-  enum status: { pending: 0, checkout: 1, payment: 2, completed: 3 }
-
 
   def add_product(product, quantity)
     item = shopping_carts.find_or_initialize_by(product: product)
-    if item.quantity + quantity > product.quantity
+    check_qtn = item.quantity + quantity
+    if check_qtn > product.quantity
       return false
     end
     item.quantity += quantity
@@ -31,13 +30,17 @@ class Cart < ApplicationRecord
       product.quantity -= item.quantity
       product.save
       item.is_completed = true
+      item.save
     end
-    self.status = :checkout
-    update(status: :checkout)
+    self.status = 2
+    self.save
     # shopping_carts.destroy_all
   end
 
   def get_shopping_carts
     shopping_carts.where(is_completed: false) 
+  end
+  def get_products
+    self.shopping_carts.includes(:product).where(is_completed: false).map(&:product)
   end
 end
