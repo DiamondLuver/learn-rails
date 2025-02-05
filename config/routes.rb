@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   delete "vendors/:id" => "vendors#destroy", as: :destroy_vendor
   get "users", to: "users#index", as: "users_index"
   
+  get "payment/checkout" => "payments#checkout", as: :payment_checkout
+
+  get "carts/:id" => "carts#checkout", as: :cart_checkout
   
   
 end
