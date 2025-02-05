@@ -15,7 +15,11 @@ user.add_role :admin
 vendor = Vendor.find(1)
 # Product.find_or_create_by!(name: 'Product 1',vendor: vendor, description: 'Product 1 description', price: 100)
 
-products = Product.all
-products.each do |product|
-    product.update_attribute(:quantity, 10)
-end
+# products = Product.all
+# products.each do |product|
+#     product.update_attribute(:quantity, 10)
+# end
+
+
+# cart = Cart.find_by_id(1)
+# cart.update_attribute(:status, 3)
