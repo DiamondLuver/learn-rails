@@ -5,7 +5,7 @@ class Cart < ApplicationRecord
 
 
   def add_product(product, quantity)
-    item = shopping_carts.find_or_initialize_by(product: product)
+    item = shopping_carts.find_or_initialize_by(product: product, is_completed: 0)
     check_qtn = item.quantity + quantity
     if check_qtn > product.quantity
       return false
