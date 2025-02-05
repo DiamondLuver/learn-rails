@@ -4,9 +4,10 @@ class CartsController < ApplicationController
     def show
         @cart = current_user.cart
         @shopping_carts = @cart.get_shopping_carts
-        @cart_products = @cart.products
+        @cart_products = @cart.get_products
         @quantities = @shopping_carts.group(:product_id).sum(:quantity)
-        if @cart_products.empty?
+        
+        if @shopping_carts.empty?
             @total_price = 0
         else
             @total_price = @cart_products.sum { |product| @quantities[product.id] * product.price }
