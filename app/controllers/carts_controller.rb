@@ -47,7 +47,7 @@ class CartsController < ApplicationController
     def checkout
         @cart = current_user.cart
         if @cart.checkout_order
-            redirect_to payment_checkout_path, notice: 'Order placed successfully.'
+            redirect_to new_charge_path, notice: 'Order placed successfully.'
         end
     end
 end

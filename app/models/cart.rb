@@ -25,6 +25,12 @@ class Cart < ApplicationRecord
   end
 
   def checkout_order
+    
+    self.status = 2
+    self.save
+    # shopping_carts.destroy_all
+  end
+  def payment_order
     shopping_carts.each do |item|
       product = item.product
       product.quantity -= item.quantity
@@ -32,10 +38,10 @@ class Cart < ApplicationRecord
       item.is_completed = true
       item.save
     end
-    self.status = 2
+    self.status = 3
     self.save
-    # shopping_carts.destroy_all
   end
+
 
   def get_shopping_carts
     shopping_carts.where(is_completed: false) 

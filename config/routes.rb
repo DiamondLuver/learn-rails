@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "charges/new"
+  get "charges/create"
   
   get "pages/home"
   devise_for :users
@@ -33,6 +35,9 @@ Rails.application.routes.draw do
   get "payment/checkout" => "payments#checkout", as: :payment_checkout
 
   get "carts/:id" => "carts#checkout", as: :cart_checkout
+
+  resources :charges, only: [:new, :create]
+  get 'thanks', to: 'charges#thanks', as: 'thanks'
   
   
 end
