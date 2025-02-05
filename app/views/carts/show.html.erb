@@ -19,10 +19,12 @@
     <% end %>
     <% end %>
     </div>
-
+        
     <div class="flex flex-col text-center justify-between shadow p-4 border rounded">
         <p class="font-semibold">Cart Total: $ <%= @total_price %></p>
+        <% if @cart_products.length > 0 %>
         <%= link_to "Checkout", cart_checkout_path(@cart.id), method: :post,class: "submit-form  text-blue-500 underline" %>
+        <% end %>
     </div>
 
 <% end %>
