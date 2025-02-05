@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   has_many :carts, through: :shopping_carts
   belongs_to :vendor
   before_update :check_quantity
+  before_create :add_quantity
 
   def check_quantity
     if self.quantity <= 0
@@ -13,6 +14,9 @@ class Product < ApplicationRecord
     # if self.quantity < 5
       # ProductMailer.with(product: self).low_stock_email.deliver_now
     # end
+    
+  end
+  def add_quantity
     if self.quantity.nil?
       self.quantity = 1
     end
