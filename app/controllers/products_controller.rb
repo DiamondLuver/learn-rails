@@ -57,7 +57,7 @@ class ProductsController < ApplicationController
         @product = Product.find(params[:id])
     end
     def product_params
-        params.require(:product).permit(:name, :description, :price)
+        params.require(:product).permit(:name, :description,:quantity, :price)
     end
 
     def user_signed_in?

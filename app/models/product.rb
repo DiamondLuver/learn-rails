@@ -7,6 +7,8 @@ class Product < ApplicationRecord
   def check_quantity
     if self.quantity <= 0
       self.destroy
+    elsif self.quantity > 0
+      Rails.logger.info "Product quantity is beyond 0: #{self.quantity}"
     end
     # if self.quantity < 5
       # ProductMailer.with(product: self).low_stock_email.deliver_now

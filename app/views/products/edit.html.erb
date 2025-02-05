@@ -30,6 +30,10 @@
     <%= form.label :price, "Price", style: "font-weight: bold; color: #555;" %><br>
     <%= form.number_field :price, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;" %>
   </div>
+  <div style="margin-bottom: 15px;">
+    <%= form.label :quantity, "Quantity", style: "font-weight: bold; color: #555;" %><br>
+    <%= form.number_field :quantity, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;", min: 1 %>
+  </div>
 
   <div style="text-align: center;">
     <%= form.submit "Update Product" %>
